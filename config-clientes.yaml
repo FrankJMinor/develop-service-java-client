@@ -1,0 +1,10 @@
+{
+    "basePackage" : "mx.com.develop.clientes",
+    "configPackage" : "mx.com.develop.clientes.config",
+    "apiPackage" : "mx.com.develop.clientes.controller",
+    "modelPackage" : "mx.com.develop.clientes.models.dto",
+    "groupId" : "mx.com.develop",
+    "artifactId" : "clientes",
+    "artifactVersion" : "0.0.1",
+    "skipdefaultInterface" : "true"
+}

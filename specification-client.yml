@@ -1,0 +1,104 @@
+openapi: 3.0.3
+
+info:
+  title: Usuario
+  version: 0.0.1
+  description: |
+    Especificacion de API del servicio para Java en su integracion de desarrollo rapido del mismo
+
+servers:
+  - url: http://localhost:8080/v1
+
+tags:
+  - name: Usuario
+
+# Describe your paths here
+paths:
+  /{idUsuario}:
+    get:
+      tags:
+        - Usuario
+      summary: 'Obtener datos del usuario'
+      description: Devuelve la información de un usuario registrado previamente.
+      parameters:
+        - in: path
+          name: idUsuario
+          schema:
+            type: string
+          required: true
+          description: Identificador del usuario.
+          example: 1
+      responses:
+        # Response code
+        200:
+          $ref: '#/components/responses/consulta-usuario'
+
+components:
+
+  schemas:
+    cliente:
+      title: Cliente
+      type: object
+      required:
+        - nombre
+        - apellidoPaterno
+        - apellidoMaterno
+        - edad
+        - fechaNacimiento
+        - correo
+        - idDomicilio
+
+      properties:
+        nombre:
+          type: string
+          maximum: 50
+          description: Nombre(s) del usuario. `La cadena debe ir en mayusculas`
+          example: Francisco
+        apellidoPaterno:
+          type: string
+          maximum: 50
+          description: Apellido paterno del usuario. `La cadena debe ir en mayusculas`
+          example: Granados
+        apellidoMaterno:
+          type: string
+          maximum: 50
+          description: Apellido materno del usuario. `La cadena debe ir en mayusculas`
+          example: FrankJMinor
+        edad:
+          type: number
+          maximum: 2
+          description: Edad del usuario. `Numeros enteros positivos`
+          example: 16
+        fechaNacimiento:
+          type: string
+          format: date
+          pattern: '[0-9]{1,2}(/|-)[0-9]{1,2}(/|-)[0-9]{4}'
+          description: Fecha de nacimineto.
+          example: 19/10/1990
+        correo:
+          type: string
+          description: Correo electronico que regisra el usuario
+          example: FrankJMinor@github.com
+        idDomicilio:
+          type: number
+          description: Identificador del domicilio registrado. `Numeros enteros positivos`
+          example: 1
+
+  requestBodies:
+    crear-usuario:
+      description: Creación de un usuario en conjunto con su cuenta en Banco Azteca
+        de tipo N2 en Banco Azteca.
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/cliente"
+
+  responses:
+    #200
+    consulta-usuario:
+      description: Operacion exitosa al realizar consulta
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/cliente'

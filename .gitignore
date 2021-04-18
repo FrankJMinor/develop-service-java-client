@@ -3,6 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+openapi-generator-cli-4.3.1.jar
 
 ### STS ###
 .apt_generated
